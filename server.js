@@ -7,18 +7,18 @@ app.set("views", "./views");
 var server = require('http').Server(app);
 var io = require("socket.io")(server);
 server.listen(3000, function () {
-	console.log("Server listening on port 3000.");
+    console.log("Server listening on port 3000.");
 });
 
+var usersArray = [];
+var typingArray = [];
 
-var usersArray=["tung"];
-
-io.on("connection", function(socket){
+io.on("connection", function (socket) {
     console.log("Incoming connection " + socket.id);
 
-    socket.on("client-send-username", function(user){
-        if(usersArray.indexOf(user) >=0) { //registration failed            
-            socket.emit("server-send-registration-failed");            
+    socket.on("client-send-username", function (user) {
+        if (usersArray.indexOf(user) >= 0) { //registration failed            
+            socket.emit("server-send-registration-failed");
         } else { //registration successful    
             usersArray.push(user);
             socket.username = user; //create a new property named username
@@ -27,26 +27,32 @@ io.on("connection", function(socket){
         }
     });
 
-    socket.on("logout", function(){
+    socket.on("logout", function () {
         usersArray.splice(
             usersArray.indexOf(socket.username), 1
         );
         socket.broadcast.emit("server-send-list-users", usersArray);
     });
 
-    socket.on("user-send-message", function(message){
-        io.sockets.emit("server-send-messages", {user:socket.username, content:message});
-    });
-
-    socket.on("typing", function(){
-        var notificationMsg = socket.username + " is typing...";
+    socket.on("user-send-message", function (message) {
+        io.sockets.emit("server-send-messages", { user: socket.username, content: message });
+        typingArray.splice(typingArray.indexOf(socket.username), 1);
+        var notificationMsg = "";
+        if (typingArray.length > 0) {
+            var notificationMsg = typingArray.toString() + " is typing...";
+        }
         io.sockets.emit("someone-is-typing", notificationMsg);
     });
-    socket.on("loss-of-focus", function(){
-        // io.sockets.emit("someone-loss-of-typing");
+
+    socket.on("typing", function () {
+        if (typingArray.indexOf(socket.username) < 0) {
+            typingArray.push(socket.username);
+            var notificationMsg = typingArray.toString() + " is typing...";
+            io.sockets.emit("someone-is-typing", notificationMsg);
+        }
     });
 });
 
-app.get("/", function(req, res){
+app.get("/", function (req, res) {
     res.render("home");
 });
