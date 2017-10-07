@@ -40,8 +40,10 @@ $(document).ready(function () {
     });
 
     $("#btnSendMessage").click(function () {
-        socket.emit("user-send-message", $("#txtMessage").val());
-        $("#txtMessage").val("");
+        if ($("#txtMessage").val()) {
+            socket.emit("user-send-message", $("#txtMessage").val());
+            $("#txtMessage").val("");
+        }
     })
 
     $("#txtMessage").keypress(function () {
