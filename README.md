@@ -32,5 +32,7 @@ node server.js
 
 * **Tung Nguyen** - *Initial work* - [tungn23](https://github.com/tungn23)
 
+## [Wiki](https://github.com/tungn23/NodeJS-DemoChat/wiki)
 
+[Go to the wiki](https://github.com/tungn23/NodeJS-DemoChat/wiki) to get started!
 
