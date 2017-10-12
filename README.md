@@ -1,6 +1,8 @@
 # NodeJS-Demo Chat
 
 This repository contains the code for a simple chatting room using NodeJS, Socket.io and Express
+[DEMO](https://tungn.herokuapp.com/)
+
 
 ## Getting Started
 
