@@ -1,4 +1,4 @@
-var socket = io("http://localhost:3000")
+var socket = io("https://tungn.herokuapp.com")
 
 socket.on("server-send-registration-failed", function () {
     alert("This username already exist. Please choose another one!");
