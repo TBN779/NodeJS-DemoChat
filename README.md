@@ -33,9 +33,9 @@ node server.js
 * [Express](https://expressjs.com/) - The web application framework for Node.js
 ## Authors
 
-* **Tung Nguyen** - *Initial work* - [tungn23](https://github.com/tungnce)
+* **Tung Nguyen** - *Initial work* - [tungnguyenv](https://github.com/tungnguyenv)
 
-## [Wiki](https://github.com/tungnce/NodeJS-DemoChat/wiki)
+## [Wiki](https://github.com/tungnguyenv/NodeJS-DemoChat/wiki)
 
-[Go to the wiki](https://github.com/tungnce/NodeJS-DemoChat/wiki) to get started!
+[Go to the wiki](https://github.com/tungnguyenv/NodeJS-DemoChat/wiki) to get started!
 
